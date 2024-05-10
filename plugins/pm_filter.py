@@ -17,7 +17,6 @@ logger.setLevel(logging.ERROR)
 
 @Client.on_message(filters.private & filters.text & filters.chat(AUTH_USERS) if AUTH_USERS else filters.text & filters.private)
 async def auto_pm_fill(b, m):
-    await message.react(emoji=random.choice(DS_REACT))
     if PMFILTER:       
         if G_FILTER:
             kd = await global_filters(b, m)
@@ -71,6 +70,7 @@ async def pm_next_page(bot, query):
             InlineKeyboardButton("ɴᴇxᴛ ➡️", callback_data=f"pmnext_{req}_{key}_{n_offset}")
         ])
     try:
+        await message.react(emoji=random.choice(DS_REACT))
         await query.edit_message_reply_markup(reply_markup=InlineKeyboardMarkup(btn))
     except MessageNotModified:
         pass
