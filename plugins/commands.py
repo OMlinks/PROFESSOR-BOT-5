@@ -17,7 +17,7 @@ BATCH_FILES = {}
 async def send_reaction(client, message: Message):
     try:
         await message.react(emoji=random.choice(DS_REACT))
-        return
+      
 
 
 @Client.on_message(filters.command("start") & filters.incoming)
