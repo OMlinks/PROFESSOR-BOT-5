@@ -5,13 +5,7 @@ from random import choice
 from info import DS_REACT
 
 @Client.on_message(filters.all)
-async def send_reaction(client, message: Message):
+async def send_reaction(_, message: Message):
     try:
         await message.react(emoji=random.choice(DS_REACT))
-    except (
-        MessageIdInvalid,
-        EmoticonInvalid,
-        ChatAdminRequired,
-        ReactionInvalid
-    ):
-        pass
+        
