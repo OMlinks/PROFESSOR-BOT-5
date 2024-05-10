@@ -30,6 +30,7 @@ async def pm_next_page(bot, query):
     try: offset = int(offset)
     except: offset = 0
     search = temp.PM_BUTTONS.get(str(key))
+    await message.react(emoji=random.choice(DS_REACT))
     if not search: return await query.answer("Yᴏᴜ Aʀᴇ Usɪɴɢ Oɴᴇ Oғ Mʏ Oʟᴅ Mᴇssᴀɢᴇs, Pʟᴇᴀsᴇ Sᴇɴᴅ Tʜᴇ Rᴇǫᴜᴇsᴛ Aɢᴀɪɴ", show_alert=True)
 
     files, n_offset, total = await get_search_results(search.lower(), offset=offset, filter=True)
@@ -70,7 +71,6 @@ async def pm_next_page(bot, query):
             InlineKeyboardButton("ɴᴇxᴛ ➡️", callback_data=f"pmnext_{req}_{key}_{n_offset}")
         ])
     try:
-        await message.react(emoji=random.choice(DS_REACT))
         await query.edit_message_reply_markup(reply_markup=InlineKeyboardMarkup(btn))
     except MessageNotModified:
         pass
