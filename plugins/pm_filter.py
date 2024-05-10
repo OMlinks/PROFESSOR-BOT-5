@@ -30,7 +30,6 @@ async def pm_next_page(bot, query):
     try: offset = int(offset)
     except: offset = 0
     search = temp.PM_BUTTONS.get(str(key))
-    await message.react(emoji=random.choice(DS_REACT))
     if not search: return await query.answer("Yᴏᴜ Aʀᴇ Usɪɴɢ Oɴᴇ Oғ Mʏ Oʟᴅ Mᴇssᴀɢᴇs, Pʟᴇᴀsᴇ Sᴇɴᴅ Tʜᴇ Rᴇǫᴜᴇsᴛ Aɢᴀɪɴ", show_alert=True)
 
     files, n_offset, total = await get_search_results(search.lower(), offset=offset, filter=True)
@@ -211,6 +210,7 @@ async def pm_spoll_choker(msg):
     gs_parsed = []
     if not g_s:
         k = await msg.reply("I Cᴏᴜʟᴅɴ'ᴛ Fɪɴᴅ Aɴʏ Mᴏᴠɪᴇ Iɴ Tʜᴀᴛ Nᴀᴍᴇ", quote=True)
+        await message.react(emoji=random.choice(DS_REACT))
         await asyncio.sleep(10)
         return await k.delete()
     regex = re.compile(r".*(imdb|wikipedia).*", re.IGNORECASE)  # look for imdb / wiki results
