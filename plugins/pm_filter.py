@@ -182,22 +182,26 @@ async def pm_AutoFilter(client, msg, pmspoll=False):
         try:
             hehe = await message.reply_photo(photo=imdb.get('poster'), caption=cap, quote=True, reply_markup=InlineKeyboardMarkup(btn))
             await asyncio.sleep(IMDB_DELET_TIME)
-            await hehe.delete()            
+            await hehe.delete()
+            await message.react(emoji=random.choice(DS_REACT))
         except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
             pic = imdb.get('poster')
             poster = pic.replace('.jpg', "._V1_UX360.jpg")
             hmm = await message.reply_photo(photo=poster, caption=cap, quote=True, reply_markup=InlineKeyboardMarkup(btn))           
             await asyncio.sleep(IMDB_DELET_TIME)
-            await hmm.delete()            
+            await hmm.delete()
+            await message.react(emoji=random.choice(DS_REACT))
         except Exception as e:
             logger.exception(e)
             cdp = await message.reply_text(cap, quote=True, reply_markup=InlineKeyboardMarkup(btn))
             await asyncio.sleep(IMDB_DELET_TIME)
+            await message.react(emoji=random.choice(DS_REACT))
             await cdp.delete()
     else:
         abc = await message.reply_text(cap, quote=True, reply_markup=InlineKeyboardMarkup(btn))
         await asyncio.sleep(IMDB_DELET_TIME)
-        await abc.delete()        
+        await abc.delete()
+        await message.react(emoji=random.choice(DS_REACT))
     if pmspoll:
         await msg.message.delete()
 
@@ -209,7 +213,6 @@ async def pm_spoll_choker(msg):
     g_s += await search_gagala(msg.text)
     gs_parsed = []
     if not g_s:
-        await message.react(emoji=random.choice(DS_REACT))
         k = await msg.reply("I Cᴏᴜʟᴅɴ'ᴛ Fɪɴᴅ Aɴʏ Mᴏᴠɪᴇ Iɴ Tʜᴀᴛ Nᴀᴍᴇ", quote=True)
         await asyncio.sleep(10)
         return await k.delete()
