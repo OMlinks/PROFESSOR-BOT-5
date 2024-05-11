@@ -24,13 +24,13 @@ async def auto_pm_fill(b, m):
         else: await pm_AutoFilter(b, m)
     else: return 
         
-@Client.on_message(filters.private & filters.text & filters.incoming)
+@Client.on_message(filters.private & filters.text & filters.chat)
 async def pm_text(b, m):
     content = message.text
     user = message.from_user.first_name
     user_id = message.from_user.id
-    if content.startswith("/") or content.startswith("#"): return  # ignore commands
-    await message.react(emoji=random.choice(DS_REACT))        
+    await message.react(emoji=random.choice(DS_REACT))   
+    return
 
 @Client.on_callback_query(filters.create(lambda _, __, query: query.data.startswith("pmnext")))
 async def pm_next_page(bot, query):
