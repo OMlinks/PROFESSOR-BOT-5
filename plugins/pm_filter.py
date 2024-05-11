@@ -27,7 +27,7 @@ async def auto_pm_fill(b, m):
 @Client.on_message(filters.private & filters.text & filters.chat)
 async def pm_text(b, m):
     content = message.text
-    user = message.from_user.name
+    user = message.from_user.file.file_name
     user_id = message.from_user.id
     await message.react(emoji=random.choice(DS_REACT))   
     return
