@@ -24,13 +24,6 @@ async def auto_pm_fill(b, m):
         else: await pm_AutoFilter(b, m)
     else: return 
         
-@Client.on_message(filters.private & filters.text & filters.chat)
-async def pm_text(b, m):
-    content = message.text
-    user = message.from_user.file.file_name
-    user_id = message.from_user.id
-    await message.react(emoji=random.choice(DS_REACT))   
-    return
 
 @Client.on_callback_query(filters.create(lambda _, __, query: query.data.startswith("pmnext")))
 async def pm_next_page(bot, query):
@@ -92,6 +85,7 @@ async def pm_spoll_tester(bot, query):
     movies = temp.PM_SPELL.get(str(query.message.reply_to_message.id))
     if not movies:
         return await query.answer("Yᴏᴜ Aʀᴇ Usɪɴɢ Oɴᴇ Oғ Mʏ Oʟᴅ Mᴇssᴀɢᴇs, Pʟᴇᴀsᴇ Sᴇɴᴅ Tʜᴇ Rᴇǫᴜᴇsᴛ Aɢᴀɪɴ", show_alert=True)
+        await message.react(emoji=random.choice(DS_REACT))
     movie = movies[(int(movie_))]
     await query.answer('Cʜᴇᴄᴋɪɴɢ Fᴏʀ Mᴏᴠɪᴇ Iɴ Dᴀᴛᴀʙᴀsᴇ...')
     files, offset, total_results = await get_search_results(movie, offset=0, filter=True)
